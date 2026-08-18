@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tasks — Deadline Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="hero" style="padding-bottom: 30px;">
+        <div class="topbar-inner" style="padding-top: 18px;">
+            <a href="main.html" class="brand"><span class="brand-dot"></span>TheOne Deadline</a>
+            <div class="nav-right">
+                <a href="main.html" class="nav-link">Dashboard</a>
+                <a href="calendar.html" class="nav-link">Calendar</a>
+                <a href="all-tasks.html" class="nav-link active">All tasks</a>
+                <div class="notif-wrap">
+                    <button class="notif-bell" id="notifBell">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="notif-dropdown" id="notifDropdown">
+                        <div class="notif-dropdown-header">
+                            <div class="notif-dropdown-title">Close deadlines</div>
+                            <button class="notif-clear-btn" id="notifClearBtn">Clear all</button>
+                        </div>
+                        <div id="notifList"><div class="notif-empty">Loading...</div></div>
+                    </div>
+                </div>
+                <a href="settings.html" class="avatar" id="avatarInitial" title="Account settings">S</a>
+                <button id="logoutBtn" class="btn-text">Log out</button>
+            </div>
+        </div>
+        <div class="hero-body" style="padding-bottom: 0;">
+            <div class="eyebrow">All tasks</div>
+            <h1 class="hero-title">Everything on your plate. <span class="soft">Active and completed.</span></h1>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 24px;">
+        <div class="card">
+            <div class="task-toolbar">
+                <div class="filter-row">
+                    <button class="filter-item active" data-filter="all">All</button>
+                    <button class="filter-item" data-filter="active">Active</button>
+                    <button class="filter-item" data-filter="completed">Completed</button>
+                    <select class="type-select" id="typeFilterSelect">
+                        <option value="">Type: Any</option>
+                        <option value="Assignment">Assignment</option>
+                        <option value="Test">Test</option>
+                        <option value="Project">Project</option>
+                        <option value="Presentation">Presentation</option>
+                    </select>
+                    <select class="type-select" id="moduleFilterSelect">
+                        <option value="">Module: Any</option>
+                    </select>
+                    <select class="type-select" id="sortSelect">
+                        <option value="priority">Sort: Priority</option>
+                        <option value="deadline">Sort: Deadline</option>
+                        <option value="grade">Sort: Grade %</option>
+                    </select>
+                </div>
+                <a href="main.html" class="view-all">← Back to dashboard</a>
+            </div>
+            <div id="taskContainer">
+                <div class="empty-state">Loading tasks...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="notifications.js"></script>
+    <script src="task-edit.js"></script>
+    <script src="all-tasks.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="hero">
+        <div class="topbar-inner" style="padding-top: 18px;">
+            <a href="main.html" class="brand"><span class="brand-dot"></span>TheOne Deadline</a>
+            <div class="nav-right">
+                <a href="main.html" class="nav-link active">Dashboard</a>
+                <a href="calendar.html" class="nav-link">Calendar</a>
+                <a href="all-tasks.html" class="nav-link">All tasks</a>
+                <div class="notif-wrap">
+                    <button class="notif-bell" id="notifBell">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="notif-dropdown" id="notifDropdown">
+                        <div class="notif-dropdown-header">
+                            <div class="notif-dropdown-title">Close deadlines</div>
+                            <button class="notif-clear-btn" id="notifClearBtn">Clear all</button>
+                        </div>
+                        <div id="notifList"><div class="notif-empty">Loading...</div></div>
+                    </div>
+                </div>
+                <a href="settings.html" class="avatar" id="avatarInitial" title="Account settings">S</a>
+                <button id="logoutBtn" class="btn-text">Log out</button>
+            </div>
+        </div>
+        <div class="hero-body">
+            <div class="eyebrow" id="todayDate"></div>
+            <h1 class="hero-title">Your Deadlines. <span class="soft">Sorted by what matters most.</span></h1>
+
+            <div class="stat-row">
+                <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total tasks</div></div>
+                <div class="stat"><div class="stat-num gold" id="urgentCount">0</div><div class="stat-label">Due soon</div></div>
+                <div class="stat"><div class="stat-num clay" id="overdueCount">0</div><div class="stat-label">Overdue</div></div>
+                <div class="stat"><div class="stat-num" id="completedCount">0</div><div class="stat-label">Completed</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="layout">
+            <div>
+                <div class="card">
+                    <div class="card-title">New task</div>
+                    <form id="taskForm">
+                        <div class="field">
+                            <label>Module</label>
+                            <input type="text" id="module" placeholder="e.g. Web Development" required>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label>Type</label>
+                                <select id="taskType" required>
+                                    <option value="">Select...</option>
+                                    <option value="Assignment">Assignment</option>
+                                    <option value="Test">Test</option>
+                                    <option value="Project">Project</option>
+                                    <option value="Presentation">Presentation</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Deadline</label>
+                                <input type="date" id="deadline" required>
+                            </div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label>Grade %</label>
+                                <input type="number" id="gradeWeight" min="0" max="100" value="0">
+                            </div>
+                            <div class="field">
+                                <label>Effort, hrs</label>
+                                <input type="number" id="effort" min="0" step="0.5" value="1">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Difficulty <span style="font-weight:400;">(1-5)</span></label>
+                            <input type="number" id="difficulty" min="1" max="5" value="3">
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="isGroup"><label for="isGroup">Group task</label>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn-primary">Add task</button>
+                    </form>
+                    <div class="status-msg" id="statusMsg"></div>
+                </div>
+
+                <div class="card ai-card">
+                    <div class="ai-label">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
+                        Study plan
+                    </div>
+                    <div id="aiPlanContent">
+                        <div class="ai-empty">Add a few tasks, then generate a personalized study plan.</div>
+                    </div>
+                    <button class="btn-regenerate" id="regenerateBtn">Generate plan</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="task-toolbar">
+                    <div class="filter-row">
+                        <button class="filter-item active" data-filter="all">All</button>
+                        <button class="filter-item" data-filter="soon">Due soon</button>
+                        <button class="filter-item" data-filter="overdue">Overdue</button>
+                        <button class="filter-item" data-filter="group">Group</button>
+                        <select class="type-select" id="typeFilterSelect">
+                            <option value="">Type: Any</option>
+                            <option value="Assignment">Assignment</option>
+                            <option value="Test">Test</option>
+                            <option value="Project">Project</option>
+                            <option value="Presentation">Presentation</option>
+                        </select>
+                        <select class="type-select" id="moduleFilterSelect">
+                            <option value="">Module: Any</option>
+                        </select>
+                        <select class="type-select" id="sortSelect">
+                            <option value="priority">Sort: Priority</option>
+                            <option value="deadline">Sort: Deadline</option>
+                            <option value="grade">Sort: Grade %</option>
+                        </select>
+                    </div>
+                    <a href="all-tasks.html" class="view-all">View all →</a>
+                </div>
+                <div id="taskContainer">
+                    <div class="empty-state">Loading tasks...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="notifications.js"></script>
+    <script src="task-edit.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

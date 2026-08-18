@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up — Deadline Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-body">
+    <div class="auth-wrap">
+        <div class="auth-brand"><span class="brand-dot"></span>TheOne Deadline</div>
+        <div class="auth-card">
+            <h1>Create your account</h1>
+            <p class="subtitle">Start tracking what matters most</p>
+
+            <form id="signupForm">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" id="name" placeholder="Your name" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="At least 6 characters" minlength="6" required>
+                </div>
+                <button type="submit" id="submitBtn" class="btn-primary">Sign Up</button>
+            </form>
+            <div class="status-msg" id="statusMsg"></div>
+
+            <p class="auth-switch">Already have an account? <a href="login.html">Log In</a></p>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="signup.js"></script>
+</body>
+</html>

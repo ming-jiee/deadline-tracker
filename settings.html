@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — TheOne Deadline</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="hero" style="padding-bottom: 30px;">
+        <div class="topbar-inner" style="padding-top: 18px;">
+            <a href="main.html" class="brand"><span class="brand-dot"></span>TheOne Deadline</a>
+            <div class="nav-right">
+                <a href="main.html" class="nav-link">Dashboard</a>
+                <a href="calendar.html" class="nav-link">Calendar</a>
+                <a href="all-tasks.html" class="nav-link">All tasks</a>
+                <div class="avatar" id="avatarInitial">S</div>
+                <button id="logoutBtn" class="btn-text">Log out</button>
+            </div>
+        </div>
+        <div class="hero-body" style="padding-bottom: 0;">
+            <div class="eyebrow">Settings</div>
+            <h1 class="hero-title">Your account. <span class="soft">Name and reminders.</span></h1>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 24px; max-width: 560px;">
+        <div class="card">
+            <div class="card-title">Profile</div>
+            <form id="profileForm">
+                <div class="field">
+                    <label>Display name</label>
+                    <input type="text" id="settingsName" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="settingsEmail" disabled>
+                </div>
+                <button type="submit" class="btn-primary" id="profileSaveBtn">Save profile</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Change password</div>
+            <form id="passwordForm">
+                <div class="field">
+                    <label>Current password</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="field">
+                    <label>New password</label>
+                    <input type="password" id="newPassword" minlength="6" required>
+                </div>
+                <button type="submit" class="btn-primary" id="passwordSaveBtn">Update password</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Reminder preferences</div>
+            <form id="reminderForm">
+                <div class="checkbox-row" style="margin-bottom: 16px;">
+                    <input type="checkbox" id="remindersEnabled">
+                    <label for="remindersEnabled">Email me reminders about upcoming deadlines</label>
+                </div>
+                <div class="field">
+                    <label>Remind me this many days before a deadline</label>
+                    <input type="number" id="reminderDaysBefore" min="1" max="14">
+                </div>
+                <button type="submit" class="btn-primary" id="reminderSaveBtn">Save preferences</button>
+            </form>
+        </div>
+
+        <div class="status-msg" id="settingsStatusMsg"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>
